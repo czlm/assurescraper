@@ -22,14 +22,11 @@ class ControlsSpider(scrapy.Spider):
             control_recommendations = section.xpath("following-sibling::h3[contains(@id, 'control-recommendations')]/following-sibling::p[1]/text()").get()
             risk_statement = section.xpath("following-sibling::h3[contains(@id, 'risk-statement')]/following-sibling::p[1]/text()").get()
             
-            # Check for the presence of parameters
-            parameters_present = bool(section.xpath("following-sibling::table//tbody/tr"))
-
+          
             yield {
                 "section_id": section_id,
                 "section_title": section_title,
                 "control_statement": control_statement,
                 "control_recommendations": control_recommendations,
                 "risk_statement": risk_statement,
-                "parameters_present": parameters_present
             }
